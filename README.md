@@ -22,7 +22,7 @@ A modern, secure, and user-friendly file sharing application built with Django. 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/riecodes/pet-grooming-python.git
+git clone https://github.com/riecodes/file-sharing-gdrive-copy-python-app.git
 cd file-sharing-app
 ```
 
