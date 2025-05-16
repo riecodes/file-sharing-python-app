@@ -62,6 +62,77 @@ python manage.py runserver
 - Main app: http://127.0.0.1:8000
 - Admin panel: http://127.0.0.1:8000/admin
 
+## 🚀 Deployment on a New System
+
+If you've copied this project to a new system, follow these steps:
+
+1. **Install Python**
+   - Download and install Python 3.8 or higher from [python.org](https://python.org)
+   - Verify installation: `python --version`
+
+2. **Set Up Virtual Environment**
+   ```bash
+   # Windows
+   python -m venv venv
+   venv\Scripts\activate
+
+   # Linux/Mac
+   python -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Database Setup**
+   ```bash
+   # Create database tables
+   python manage.py makemigrations
+   python manage.py migrate
+
+   # Create a new admin user
+   python manage.py createsuperuser
+   # Follow the prompts to create username, email, and password
+   ```
+
+5. **Create Required Directories**
+   ```bash
+   # Create media directory for file uploads
+   mkdir media
+   mkdir media/shared_files
+   ```
+
+6. **Run the Server**
+   ```bash
+   python manage.py runserver
+   ```
+
+7. **Access the Application**
+   - Open your browser and go to: http://127.0.0.1:8000
+   - Log in with your newly created superuser account
+
+### Troubleshooting
+
+If you encounter any issues:
+
+1. **Database Issues**
+   - Delete `db.sqlite3` if it exists
+   - Run migrations again: `python manage.py migrate`
+
+2. **Missing Dependencies**
+   - Ensure virtual environment is activated
+   - Reinstall requirements: `pip install -r requirements.txt`
+
+3. **Permission Issues**
+   - Ensure you have write permissions for the `media` directory
+   - On Linux/Mac: `chmod 755 media`
+
+4. **Port Already in Use**
+   - Change the port: `python manage.py runserver 8001`
+   - Or kill the process using the port
+
 ## 🏗️ Project Structure
 
 ```
