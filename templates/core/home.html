@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Home - File Sharing{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>My Files</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
+    </div>
+</div>
+
+<div class="row">
+    {% for file in files %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                {{ file.title }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ file.description|truncatewords:20 }}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        Uploaded by: {{ file.uploader.username }}<br>
+                        Date: {{ file.upload_date|date:"M d, Y" }}
+                    </small>
+                </p>
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'download' file.id %}" class="btn btn-primary">Download</a>
+                    {% if file.uploader == user %}
+                    <div>
+                        <a href="{% url 'share' file.id %}" class="btn btn-outline-primary">Share</a>
+                        <a href="{% url 'delete' file.id %}" class="btn btn-outline-danger">Delete</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col">
+        <div class="alert alert-info">
+            No files available. <a href="{% url 'upload' %}">Upload your first file</a>!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} 
